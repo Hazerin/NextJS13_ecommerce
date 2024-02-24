@@ -1,33 +1,32 @@
+/* Eventuali import vanno prima delle direttive a Tailwind */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* @layer specifica in che categoria vanno messe le regole dello stile (per deciderne
+l'ordine di applicazione). Le tre scelte sono:
+base (componenti HTML base come h1,h2)
+components (da applicare a classi personalizzate, come il "button" definito di seguito)
+utilites (piccole classi con un sola regola CSS per casi specifici, ha la precedenza su tutti gli altri)
+@apply mentre si definiscono le regole css consente di usare le classi di Tailwind per definirne di personalizzate. */
+
+/* È solo un esempio, che ha la priorità più bassa di tutte. Qualsiasi ridefinizione di font-size
+avrà la priorità su questa, che invece sarà quella di base se non specificata. */
+@layer base {
+    h1 {
+        font-size: 10px;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+    .button {
+        @apply border px-5 md:px-10 py-2.5 rounded font-semibold transition duration-200 ease-out
+    }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .bg-black {
+        background: black;
+    }
 }
