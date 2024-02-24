@@ -9,7 +9,7 @@ import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function page() {
+export default function Modal() {
 
   const [isOpen, setIsOpen] = useState(true);
   const [product, setProduct] = useState<Product>();
